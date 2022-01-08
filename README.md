@@ -1,1 +1,3 @@
-# BOJ_Java
+### BOJ Java
+
+> BOJ Solutions in Java
