@@ -31,24 +31,17 @@ while queue: # 큐가 빌 때까지
         nx = x + dx[i]
         ny = y + dy[i]
         # 맵을 벗어나는 경우 무시
-        if nx < 0 or nx >= n or ny < 0 or ny >= n:
+        if nx < 0 or nx >= n or ny < 0 or ny >= n:          
             continue
         # 방문하지 않은 위치라면
         if visited[nx][ny] == -1:
             # 검은 방인 경우 카운트를 증가해서 삽입
             if graph[nx][ny] == 0:
                 visited[nx][ny] = count + 1
-                queue.append((count + 1, nx, ny))
+                heapq.heappush(queue, (count + 1, nx, ny))
             # 흰 방인 경우 카운트를 그대로 삽입
             else:
                 visited[nx][ny] = count
-                queue.append((count, nx, ny))
+                heapq.heappush(queue, (count, nx, ny))
 
 print(visited[n - 1][n - 1])
-"""
-print('결과')
-for i in range(n):
-    for j in range(n):
-        print(visited[i][j], end='')
-    print()
-"""
