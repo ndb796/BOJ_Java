@@ -61,3 +61,75 @@ public class Main {
         }
     }
 }
+
+/*
+
+전체 나무의 개수: 5개
+필요한 나무 높이: 20
+
+4 42 40 26 46
+
+[1단계]
+left: 4, right: 46
+이때, mid (height): (4 + 46) / 2 = 25
+즉, 25로 잘랐을 때 얻는 나무의 총 높이는
+17 + 15 + 1 + 21 = 54
+따라서, 충분히 얻었으므로, 높이를 더 높여야 됨.
+
+[2단계]
+left: 26, right: 46
+이때, mid (height): (26 + 46) / 2 = 36
+즉, 36으로 잘랐을 때 얻는 나무의 총 높이는
+6 + 4 + 10 = 20
+따라서, 충분히 얻었으므로, 높이를 더 높여야 됨.
+
+[3단계]
+left: 37, right: 46
+...
+
+"가장 마지막으로 조건을 만족하는 높이 값"을 출력.
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+    Scanner scanner = new Scanner(System.in);
+
+    // 전체 나무의 개수 입력받기
+    int n = scanner.nextInt();
+    // 필요한 나무의 높이 입력받기
+    int m = scanner.nextInt();
+
+    // 각 나무의 높이 입력받기
+    int[] arr = new int[n];
+    for(int i = 0; i < n; i++) {
+      arr[i] = scanner.nextInt();
+    }
+
+    // 이진 탐색 수행
+    int left = 0;
+    int right = 1000000000;
+    int result = 0;
+    while (left <= right) {
+      int mid = (left + right) / 2;
+      // 현재 높이로 자르기 수행
+      long total = 0;
+      for (int i = 0; i < n; i++) {
+        if (mid < arr[i]) total += arr[i] - mid;
+      }
+      // 충분히 얻었다면 높이를 더 높여보기
+      if (total >= m) {
+        left = mid + 1;
+        result = mid;
+      }
+      else { // 그렇지 않다면, 높이를 낮추어보기
+        right = mid - 1;
+      }
+    }
+    System.out.println(result);
+  }
+}
+
+*/
