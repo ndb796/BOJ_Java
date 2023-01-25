@@ -9,6 +9,7 @@ visited[n] = 1
 
 while queue:
     current = queue.popleft()
+    # 2의 제곱으로 10만 이상이 되기 위해 최대 16~17회이므로 가능한 방법
     temp = current * 2
     while temp <= 100000:
         if visited[temp] == 0:
